@@ -1,0 +1,10 @@
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\PCtest1\PCtest1\bin\Debug\PCtest1.exe.config
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\PCtest1\PCtest1\bin\Debug\PCtest1.exe
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\PCtest1\PCtest1\bin\Debug\PCtest1.pdb
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\PCtest1\PCtest1\bin\Debug\vJoyInterfaceWrap.dll
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\PCtest1\PCtest1\obj\Debug\PCtest1.csprojResolveAssemblyReference.cache
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\PCtest1\PCtest1\obj\Debug\PCtest1.Form1.resources
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\PCtest1\PCtest1\obj\Debug\PCtest1.Properties.Resources.resources
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\PCtest1\PCtest1\obj\Debug\PCtest1.csproj.GenerateResource.Cache
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\PCtest1\PCtest1\obj\Debug\PCtest1.exe
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\PCtest1\PCtest1\obj\Debug\PCtest1.pdb
