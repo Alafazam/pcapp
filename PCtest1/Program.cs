@@ -11,22 +11,13 @@ namespace PCtest1
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-
         static public vJoy joystick;
         static public uint id = 15;
-        static public void start()
-        {
-            joystick = new vJoy();
-
-            vJoy.ResetButtons(id);
-           
-           
-        }
-
+       
 
         static void Main(string[] args)
         {
-           
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
