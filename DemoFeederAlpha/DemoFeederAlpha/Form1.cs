@@ -89,8 +89,12 @@ namespace DemoFeederAlpha
                     iReport.AxisZRot = (int)receiveBuffer[6];
 
                     // Set buttons one by one
-                    iReport.Buttons = (uint)(receiveBuffer[1] + 512 * (receiveBuffer[2] % 2) + 1024 * (receiveBuffer[2] / 2 % 2));
-                    int pov = receiveBuffer[2] / 4;
+                    iReport.Buttons = (uint)(receiveBuffer[1] + 256 * (receiveBuffer[2] % 2)+ 512 * ((receiveBuffer[2] / 2) % 2)  );
+                    int pov =(int)receiveBuffer[2]>>2;
+                    if (pov==4)
+                    {
+                        pov = -1;
+                    }
                     iReport.bHats = (uint)pov;
                     joystick.UpdateVJD(id, ref iReport);
                 }
