@@ -1,0 +1,9 @@
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe.config
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.pdb
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\vJoyInterfaceWrap.dll
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.Form1.resources
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.Properties.Resources.resources
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.csproj.GenerateResource.Cache
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.exe
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.pdb
