@@ -30,41 +30,111 @@
         {
             this.lbl = new System.Windows.Forms.Label();
             this.btn1 = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tab1 = new System.Windows.Forms.TabPage();
+            this.tab2 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn2 = new System.Windows.Forms.Button();
+            this.tabControl1.SuspendLayout();
+            this.tab1.SuspendLayout();
+            this.tab2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl
             // 
             this.lbl.AutoSize = true;
-            this.lbl.Location = new System.Drawing.Point(13, 13);
+            this.lbl.BackColor = System.Drawing.Color.White;
+            this.lbl.Location = new System.Drawing.Point(3, 3);
+            this.lbl.MinimumSize = new System.Drawing.Size(630, 290);
             this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(0, 13);
+            this.lbl.Size = new System.Drawing.Size(630, 290);
             this.lbl.TabIndex = 1;
-            this.lbl.Click += new System.EventHandler(this.label1_Click);
+            this.lbl.Text = "Events Log";
             // 
             // btn1
             // 
             this.btn1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btn1.Font = new System.Drawing.Font("Orator Std", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn1.ForeColor = System.Drawing.Color.AliceBlue;
-            this.btn1.Location = new System.Drawing.Point(175, 294);
+            this.btn1.Location = new System.Drawing.Point(34, 399);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(197, 58);
             this.btn1.TabIndex = 2;
             this.btn1.Text = "Start Feeding";
             this.btn1.UseVisualStyleBackColor = false;
-            this.btn1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btn1.Click += new System.EventHandler(this.btn1_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tab1);
+            this.tabControl1.Controls.Add(this.tab2);
+            this.tabControl1.ItemSize = new System.Drawing.Size(72, 40);
+            this.tabControl1.Location = new System.Drawing.Point(34, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(648, 351);
+            this.tabControl1.TabIndex = 3;
+            // 
+            // tab1
+            // 
+            this.tab1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tab1.Controls.Add(this.lbl);
+            this.tab1.Location = new System.Drawing.Point(4, 44);
+            this.tab1.Name = "tab1";
+            this.tab1.Padding = new System.Windows.Forms.Padding(3);
+            this.tab1.Size = new System.Drawing.Size(640, 303);
+            this.tab1.TabIndex = 0;
+            this.tab1.Text = "Log";
+            // 
+            // tab2
+            // 
+            this.tab2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tab2.Controls.Add(this.button1);
+            this.tab2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tab2.Location = new System.Drawing.Point(4, 44);
+            this.tab2.Name = "tab2";
+            this.tab2.Padding = new System.Windows.Forms.Padding(3);
+            this.tab2.Size = new System.Drawing.Size(640, 303);
+            this.tab2.TabIndex = 1;
+            this.tab2.Text = "Settings";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(534, 257);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(73, 29);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Apply";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btn2
+            // 
+            this.btn2.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btn2.Font = new System.Drawing.Font("Orator Std", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn2.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn2.Location = new System.Drawing.Point(481, 399);
+            this.btn2.Name = "btn2";
+            this.btn2.Size = new System.Drawing.Size(197, 58);
+            this.btn2.TabIndex = 4;
+            this.btn2.Text = "Stop Feeding";
+            this.btn2.UseVisualStyleBackColor = false;
+            this.btn2.Click += new System.EventHandler(this.btn2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 407);
+            this.ClientSize = new System.Drawing.Size(719, 520);
+            this.Controls.Add(this.btn2);
             this.Controls.Add(this.btn1);
-            this.Controls.Add(this.lbl);
+            this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "AlphaFeeder";
+            this.tabControl1.ResumeLayout(false);
+            this.tab1.ResumeLayout(false);
+            this.tab1.PerformLayout();
+            this.tab2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -72,6 +142,11 @@
 
         private System.Windows.Forms.Button btn1;
         public System.Windows.Forms.Label lbl;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tab1;
+        private System.Windows.Forms.TabPage tab2;
+        private System.Windows.Forms.Button btn2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
