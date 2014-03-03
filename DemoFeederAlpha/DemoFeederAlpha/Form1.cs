@@ -97,7 +97,7 @@ namespace DemoFeederAlpha
         vJoy joystick;
         uint id = 15;
         int localPort = 6000
-        , bufferSize = 9;//Buffer size is 9 beacause 2 extra bytes are recieved..
+        , bufferSize = 7;
         IPAddress localAddress = IPAddress.Any;
         SocketType sockType = SocketType.Stream;
         ProtocolType sockProtocol = ProtocolType.Tcp;
