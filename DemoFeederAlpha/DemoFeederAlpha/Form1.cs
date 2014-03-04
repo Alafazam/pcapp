@@ -78,7 +78,7 @@ namespace DemoFeederAlpha
                 updateLog("Feeder Stopped");
             }
             else
-                updateLog("Feeder Already Not Runnig");
+                updateLog("Feeder Already Not Running");
 
         }
 
@@ -103,9 +103,11 @@ namespace DemoFeederAlpha
         ProtocolType sockProtocol = ProtocolType.Tcp;
         Socket serverSocket = null;
         IPEndPoint localEndPoint;
-
+        vJoy.JoystickState iReport;
         public bool started = false;
         public Thread feederThread;
+        Socket clientSocket;
+        long maxval = 0;
 
         public feeder()
         {
@@ -114,6 +116,7 @@ namespace DemoFeederAlpha
             serverSocket = new Socket(localAddress.AddressFamily, sockType, sockProtocol);
             feederThread = new Thread(this.StartFeeding);
             joystick = new vJoy();
+            joystick.GetVJDAxisMax(id, HID_USAGES.HID_USAGE_X, ref maxval);
         }
 
 
@@ -127,12 +130,12 @@ namespace DemoFeederAlpha
         public void StartFeeding()
         {
 
-            vJoy.JoystickState iReport;
+
             iReport = new vJoy.JoystickState();
             joystick.AcquireVJD(id);
             joystick.ResetAll();
             //updateLog("Reacing try block");
-            Socket clientSocket;
+
             byte[] receiveBuffer = new byte[bufferSize];
             // Bind the socket to the local interface specified
             serverSocket.Bind(localEndPoint);
@@ -140,29 +143,47 @@ namespace DemoFeederAlpha
             // Wait for a client connection
             clientSocket = serverSocket.Accept();
 
+      //      try
+        //    {
+                // lbl.Text += "\n" + "Server Started";
+                while (true)
+                {
+                    clientSocket.Receive(receiveBuffer);
+                    // lbl.Text += "Heap size reciever" + receiveBuffer.Length + "\n";
+                    iReport = new vJoy.JoystickState();
+                    //main parsing and feeding
+                    iReport.bDevice = (byte)id;
+                    //
+                    iReport.AxisX = (int)((maxval / 255) * (int)receiveBuffer[3]);
+                    iReport.AxisY = (int)((maxval / 255) * (int)receiveBuffer[4]);
+                    iReport.AxisZ = (int)((maxval / 255) * (int)receiveBuffer[5]);
+                    iReport.AxisZRot = (int)((maxval / 255) * (int)receiveBuffer[6]);
 
-            // lbl.Text += "\n" + "Server Started";
-            while (true)
-            {
-                clientSocket.Receive(receiveBuffer);
-                // lbl.Text += "Heap size reciever" + receiveBuffer.Length + "\n";
-                iReport = new vJoy.JoystickState();
-                //main parsing and feeding
-                iReport.bDevice = (byte)id;
-                iReport.AxisX = 128 * (int)receiveBuffer[3] * 2; ;
-                iReport.AxisY = 128 * (int)receiveBuffer[4] * 2;
-                iReport.AxisZ = 128 * (int)receiveBuffer[5] * 2;
-                iReport.AxisZRot = 128 * (int)receiveBuffer[6] * 2;
+                    // Set buttons one by one
+                    iReport.Buttons = (uint)(receiveBuffer[1] + 256 * (receiveBuffer[2] % 2) + 512 * ((receiveBuffer[2] / 2) % 2));
+                    int pov = (int)receiveBuffer[2] >> 2;
+                    //if (pov == 4)
+                        iReport.bHats = 0xFFFFFFFF;
+                    //else
+                      //  iReport.bHats = (uint)pov;
+                    joystick.UpdateVJD(id, ref iReport);
+                }
 
-                // Set buttons one by one
-                iReport.Buttons = (uint)(receiveBuffer[1] + 256 * (receiveBuffer[2] % 2) + 512 * ((receiveBuffer[2] / 2) % 2));
-                int pov = (int)receiveBuffer[2] >> 2;
-                if (pov == 4) { pov = -1; }
-                iReport.bHats = (uint)pov;
-                joystick.UpdateVJD(id, ref iReport);
-            }
-
-
+            //}
+          //  catch (SocketException err)
+            //{
+                
+                // Console.WriteLine("Server: Socket error occurred: {0}", err.Message);
+            //}
+            //finally
+            //{
+                // Close the socket if necessary
+              //  if (serverSocket != null)
+                //{
+                    //Console.WriteLine("Server: Closing using Close()...");
+                 //   serverSocket.Close();
+                //}
+            
 
 
 
