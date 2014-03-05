@@ -18,6 +18,7 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+            this.feeder1.feederThread.Abort();
         }
 
         #region Windows Form Designer generated code
