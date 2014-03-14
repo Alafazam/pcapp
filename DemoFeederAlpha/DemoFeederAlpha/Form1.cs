@@ -124,6 +124,10 @@ namespace DemoFeederAlpha
         {
             localEndPoint = new IPEndPoint(localAddress, localPort);
             // Create the server socket
+            //start the server object
+            serverSocket = new Socket(localAddress.AddressFamily, sockType, sockProtocol);
+            // Bind the socket to the local interface specified
+            serverSocket.Bind(localEndPoint);
             
             joystick = new vJoy();
             joystick.GetVJDAxisMax(id, HID_USAGES.HID_USAGE_X, ref maxval);
@@ -146,27 +150,24 @@ namespace DemoFeederAlpha
 
           
             _firstRun = false;
-
+            
+         
             this.StartFeeding(new object());
         }
 
 
 
         public void StartFeeding(object state)
-        {//start the server object
-            serverSocket = new Socket(localAddress.AddressFamily, sockType, sockProtocol);
-
-            // Bind the socket to the local interface specified
-            serverSocket.Bind(localEndPoint);
-            
-            _keepRunning = true;
+        {
             byte[] receiveBuffer = new byte[bufferSize];
+            _keepRunning = true;
+           
             // Wait for a client connection
-        this.serverSocket.Listen(1);
+            this.serverSocket.Listen(1);
 
             
         try
-        {
+        {   
             
             clientSocket = serverSocket.Accept();
             this.LogDetails();
@@ -206,8 +207,9 @@ namespace DemoFeederAlpha
         }
         finally {
 
-            serverSocket.Dispose();
-            clientSocket.Dispose();
+ //           serverSocket.Dispose();
+            clientSocket.Dispose();         
+
 
         }
 
