@@ -7,4 +7,3 @@ C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeed
 C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.csproj.GenerateResource.Cache
 C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.exe
 C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.pdb
-C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.csprojResolveAssemblyReference.cache
