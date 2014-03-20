@@ -196,10 +196,10 @@ namespace DemoFeederAlpha
                     iReport = new vJoy.JoystickState();
                     //main parsing and feeding
                     iReport.bDevice = (byte)id;
-                    iReport.AxisX = (int)(conversionFactor * ((int)receiveBuffer[3] / sensivityFactor * sensivityFactor + sensivityFactor - 1));
-                    iReport.AxisY = (int)(conversionFactor * ((int)receiveBuffer[4] / sensivityFactor * sensivityFactor + sensivityFactor - 1));
-                    iReport.AxisZ = (int)(conversionFactor * ((int)receiveBuffer[5] / sensivityFactor * sensivityFactor + sensivityFactor - 1));
-                    iReport.AxisZRot = (int)(conversionFactor * ((int)receiveBuffer[6] / sensivityFactor * sensivityFactor + sensivityFactor - 1));
+                    iReport.AxisX = (int)(conversionFactor * (int)receiveBuffer[3]);
+                    iReport.AxisY = (int)(conversionFactor * (int)receiveBuffer[4]);
+                    iReport.AxisZ = (int)(conversionFactor * (int)receiveBuffer[5]);
+                    iReport.AxisZRot = (int)(conversionFactor * (int)receiveBuffer[6]);
                     // Set buttons one by one
                     iReport.Buttons = (uint)(receiveBuffer[1] + 256 * (receiveBuffer[2] % 2) + 512 * ((receiveBuffer[2] / 2) % 2));
                     int pov = (int)receiveBuffer[2] >> 2;
@@ -223,11 +223,8 @@ namespace DemoFeederAlpha
             }
             finally
             {
-
                 //serverSocket.Dispose();
                 clientSocket.Dispose();
-
-
             }
 
 
