@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,42 +17,47 @@ namespace DemoFeederAlpha
     public partial class Form1 : Form
     {
         feeder feeder1;
+        int sensivity_factor;
         public Form1()
         {
 
             InitializeComponent();
-            lbl.Text += "\nHELLO";
+            tb1.Text += "Hello User \r\n";
             feeder1 = new feeder();
             UpdateMyStatus(feeder1.getStatus());
-            
+            String[] asd = new String[9];
+
+            asd = feeder1.LogDetails();
+            tb1.Text += "X Axis " + asd[0] + "\r\n";
+            tb1.Text += "Y Axis " + asd[1] + "\r\n";
+            tb1.Text += "Z Axis " + asd[2] + "\r\n";
+            tb1.Text += "RX Axis " + asd[3] + "\r\n";
+            tb1.Text += "RZ Axis " + asd[4] + "\r\n";
+            tb1.Text += "No of Buttons " + asd[5] + "\r\n";
+            tb1.Text += "No of Constant POV " + asd[6] + "\r\n";
+            tb1.Text += "No of Discrete POV " + asd[7] + "\r\n";
+            tb1.Text += "Press Start feeding to Start " +  "\r\n";
+
         }
 
 
         public void updateLog(String AddThisToLog)
         {
-            this.lbl.Text += "\n" + AddThisToLog;
+            this.tb1.Text += "\r\n" + AddThisToLog;
         }
+
 
         private void btn1_Click(object sender, EventArgs e)
         {
-            if (feeder1._firstRun)
+            if (!feeder1._keepRunning)
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(feeder1.InitFeeding));
-                lbl.Text += "\nfirst run";
+                tb1.Text += "Feeding Started" +" \r\n";
             }
             else
             {
-                if (!feeder1._keepRunning)
-                {
-                    ThreadPool.QueueUserWorkItem(new WaitCallback(feeder1.InitFeeding));
-                    lbl.Text += "\n Feeding restarted";
-                }
-                else
-                {
-                    lbl.Text += "\nfeeder alreading feeding";
-                }
+                tb1.Text +="Feeder alreading feeding \r\n";
             }
-        
         }
 
         private void btn2_Click(object sender, EventArgs e)
@@ -59,37 +65,52 @@ namespace DemoFeederAlpha
             if (feeder1._keepRunning)
             {
                 feeder1.StopFeeding();
-                lbl.Text += "\n" + "feeding stoped ";
+                tb1.Text += "\r\n" + "Feeding stoped ";
             }
-            
+
         }
 
-        
+
         private void UpdateMyStatus(String status)
         {
 
             switch (status)
             {
                 case "VJD_STAT_OWN":
-                    lbl.Text += "vJoy Device  is already owned by this feeder\n";
+                    tb1.Text += "vJoy Device  is already owned by this feeder \r\n";
                     break;
                 case "VJD_STAT_FREE":
-                    lbl.Text += "\nvJoy Device  is free and can be started";
+                    tb1.Text += "vJoy Device  is free and can be started \r\n";
                     break;
                 case "VJD_STAT_BUSY":
-                    lbl.Text += "vJoy Device  is already owned by another feeder\nCannot continue\n";
+                    tb1.Text += "vJoy Device  is already owned by another feeder\r\nCannot continue\r\n";
                     return;
                 case "VJD_STAT_MISS":
-                    lbl.Text += "vJoy Device  is not installed or disabled\nCannot continue\n";
+                    tb1.Text += "vJoy Device  is not installed or disabled\r\nCannot continue\r\n";
                     return;
                 default:
-                    lbl.Text += "vJoy Device general error\nCannot continue\n";
+                    tb1.Text += "vJoy Device general error\r\nCannot continue\r\n";
                     return;
             };
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            feeder1.StopFeeding();
+            feeder1.applyChanges(sensivity_factor);
+            tb1.Text += "Changes Applied please restart feeding";
+        }
 
-        
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("GameLad Pc App 1.0 \nWritten by:Alaf Azam Khan & Ankit Verma\n'Hope you have fun'\nFeedbacks are Welcome", "About");
+        }
+
+       
+
+
+
+
 
 
     }
@@ -104,8 +125,7 @@ namespace DemoFeederAlpha
     {
         vJoy joystick;
         uint id = 15;
-        int localPort = 6000
-        , bufferSize = 7;
+        int localPort = 6000, bufferSize = 7;
         IPAddress localAddress = IPAddress.Any;
         SocketType sockType = SocketType.Stream;
         ProtocolType sockProtocol = ProtocolType.Tcp;
@@ -116,21 +136,27 @@ namespace DemoFeederAlpha
         Socket clientSocket;
         long maxval = 0;
         public volatile bool _keepRunning = false;
-        public volatile bool _firstRun = true;
-       
-
+        public float conversionFactor;
+        private int sensivityFactor = 2;
 
         public feeder()
         {
             localEndPoint = new IPEndPoint(localAddress, localPort);
-            // Create the server socket
-            //start the server object
+            // Create the server socket 
             serverSocket = new Socket(localAddress.AddressFamily, sockType, sockProtocol);
             // Bind the socket to the local interface specified
             serverSocket.Bind(localEndPoint);
-            
+            //create the joystick handler
             joystick = new vJoy();
+            //set value for max_of_Axis
             joystick.GetVJDAxisMax(id, HID_USAGES.HID_USAGE_X, ref maxval);
+            conversionFactor = maxval / 255;
+
+        }
+
+        public void applyChanges(int s)
+        {
+            sensivityFactor = s;
         }
 
 
@@ -145,79 +171,71 @@ namespace DemoFeederAlpha
         public void InitFeeding(object state)
         {
             iReport = new vJoy.JoystickState();
+            //Acquire Vjoystick Driver
             joystick.AcquireVJD(id);
+            //reset vjoy driver
             joystick.ResetAll();
-
-          
-            _firstRun = false;
-            
-         
             this.StartFeeding(new object());
         }
-
-
 
         public void StartFeeding(object state)
         {
             byte[] receiveBuffer = new byte[bufferSize];
             _keepRunning = true;
-           
             // Wait for a client connection
             this.serverSocket.Listen(1);
 
-            
-        try
-        {   
-            
-            clientSocket = serverSocket.Accept();
-            this.LogDetails();
-            //lbl.Text += "\n" + "Server Started";
-            while (_keepRunning)
+            try
             {
-                clientSocket.Receive(receiveBuffer);
-                // lbl.Text += "Heap size reciever" + receiveBuffer.Length + "\n";
-                iReport = new vJoy.JoystickState();
-                //main parsing and feeding
-                iReport.bDevice = (byte)id;
-                iReport.AxisX = (int)((maxval / 255) * (int)receiveBuffer[3]);
-                iReport.AxisY = (int)((maxval / 255) * (int)receiveBuffer[4]);
-                iReport.AxisZ = (int)((maxval / 255) * (int)receiveBuffer[5]);
-                iReport.AxisZRot = (int)((maxval / 255) * (int)receiveBuffer[6]);
 
-                // Set buttons one by one
-                iReport.Buttons = (uint)(receiveBuffer[1] + 256 * (receiveBuffer[2] % 2) + 512 * ((receiveBuffer[2] / 2) % 2));
-                int pov = (int)receiveBuffer[2] >> 2;
-                //if (pov == 4)
-                iReport.bHats = 0xFFFFFFFF;
-                //else
-                //  iReport.bHats = (uint)pov;
-                joystick.UpdateVJD(id, ref iReport);
+                clientSocket = serverSocket.Accept();
+                while (_keepRunning)
+                {
+                    clientSocket.Receive(receiveBuffer);
+                    //creating Ireport for feeding
+                    iReport = new vJoy.JoystickState();
+                    //main parsing and feeding
+                    iReport.bDevice = (byte)id;
+                    iReport.AxisX = (int)(conversionFactor * ((int)receiveBuffer[3] / sensivityFactor * sensivityFactor + sensivityFactor - 1));
+                    iReport.AxisY = (int)(conversionFactor * ((int)receiveBuffer[4] / sensivityFactor * sensivityFactor + sensivityFactor - 1));
+                    iReport.AxisZ = (int)(conversionFactor * ((int)receiveBuffer[5] / sensivityFactor * sensivityFactor + sensivityFactor - 1));
+                    iReport.AxisZRot = (int)(conversionFactor * ((int)receiveBuffer[6] / sensivityFactor * sensivityFactor + sensivityFactor - 1));
+                    // Set buttons one by one
+                    iReport.Buttons = (uint)(receiveBuffer[1] + 256 * (receiveBuffer[2] % 2) + 512 * ((receiveBuffer[2] / 2) % 2));
+                    int pov = (int)receiveBuffer[2] >> 2;
+                    //if (pov == 4)
+                    iReport.bHats = 0xFFFFFFFF;
+                    //else
+                    //  iReport.bHats = (uint)pov;
+                    joystick.UpdateVJD(id, ref iReport);
+                }
+
             }
-
-        }
-        catch (SocketException err)
-        {
-            if (err.Message == "An existing connection was forcibly closed by the remote host")
+            catch (SocketException err)
             {
-                serverSocket.Dispose();
-                this.InitFeeding(new object() );
+                if (err.Message == "An existing connection was forcibly closed by the remote host")
+                {
+                    serverSocket.Dispose();
+                    this.InitFeeding(new object());
+                }
+
+                // Console.WriteLine("Server: Socket error occurred: {0}", err.Message);
             }
-            
-            // Console.WriteLine("Server: Socket error occurred: {0}", err.Message);
-        }
-        finally {
+            finally
+            {
 
- //           serverSocket.Dispose();
-            clientSocket.Dispose();         
+                //serverSocket.Dispose();
+                clientSocket.Dispose();
 
 
-        }
+            }
 
 
             //end of startfeeding
         }
 
-        public void LogDetails()
+
+        public String[] LogDetails()
         {
 
             bool AxisX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_X);
@@ -229,9 +247,20 @@ namespace DemoFeederAlpha
             int nButtons = joystick.GetVJDButtonNumber(id);
             int ContPovNumber = joystick.GetVJDContPovNumber(id);
             int DiscPovNumber = joystick.GetVJDDiscPovNumber(id);
+            String[] asd;
+            asd = new String[9];
+            asd[0] = "" + AxisX;
+            asd[1] = "" + AxisY;
+            asd[2] = "" + AxisZ;
+            asd[3] = "" + AxisRX;
+            asd[4] = "" + AxisRZ;
+            asd[5] = "" + nButtons;
+            asd[6] = "" + ContPovNumber;
+            asd[7] = "" + DiscPovNumber;
 
-
+            return asd;
         }
+
         public void StopFeeding()
         {
             _keepRunning = false;
