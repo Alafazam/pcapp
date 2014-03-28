@@ -17,16 +17,14 @@ namespace DemoFeederAlpha
     public partial class Form1 : Form
     {
         feeder feeder1;
-        int sensivity_factor;
+        
         public Form1()
         {
-
             InitializeComponent();
             tb1.Text += "Hello User \r\n";
             feeder1 = new feeder();
             UpdateMyStatus(feeder1.getStatus());
             String[] asd = new String[9];
-
             asd = feeder1.LogDetails();
             tb1.Text += "X Axis " + asd[0] + "\r\n";
             tb1.Text += "Y Axis " + asd[1] + "\r\n";
@@ -36,8 +34,8 @@ namespace DemoFeederAlpha
             tb1.Text += "No of Buttons " + asd[5] + "\r\n";
             tb1.Text += "No of Constant POV " + asd[6] + "\r\n";
             tb1.Text += "No of Discrete POV " + asd[7] + "\r\n";
-            tb1.Text += "Press Start feeding to Start " +  "\r\n";
-
+            tb1.Text +=  getMyIp()+"\r\n";
+            tb1.Text += "Press Start feeding to Start " + "\r\n";
         }
 
 
@@ -65,9 +63,33 @@ namespace DemoFeederAlpha
             if (feeder1._keepRunning)
             {
                 feeder1.StopFeeding();
-                tb1.Text += "\r\n" + "Feeding stoped ";
+                tb1.Text += "Feeding stoped " + "\r\n";
             }
 
+        }
+
+        private string getMyIp()
+        {
+            IPHostEntry host;
+            string localIP = "?";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    localIP = ip.ToString();
+                }
+            }
+
+            if (localIP=="127.0.0.1")
+            {
+                return "Please Connect you PC and mobile in same network";     
+            }
+            else
+            {
+                return "Please connect to "+ localIP;
+
+            }
         }
 
 
@@ -94,12 +116,7 @@ namespace DemoFeederAlpha
             };
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            feeder1.StopFeeding();
-            feeder1.applyChanges(sensivity_factor);
-            tb1.Text += "Changes Applied please restart feeding";
-        }
+        
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -107,11 +124,6 @@ namespace DemoFeederAlpha
         }
 
        
-
-
-
-
-
 
     }
 
@@ -132,12 +144,10 @@ namespace DemoFeederAlpha
         Socket serverSocket = null;
         IPEndPoint localEndPoint;
         vJoy.JoystickState iReport;
-        public Thread feederThread;
         Socket clientSocket;
         long maxval = 0;
         public volatile bool _keepRunning = false;
         public float conversionFactor;
-        private int sensivityFactor = 2;
 
         public feeder()
         {
@@ -151,20 +161,14 @@ namespace DemoFeederAlpha
             //set value for max_of_Axis
             joystick.GetVJDAxisMax(id, HID_USAGES.HID_USAGE_X, ref maxval);
             conversionFactor = maxval / 255;
-
         }
 
-        public void applyChanges(int s)
-        {
-            sensivityFactor = s;
-        }
-
+       
 
         public string getStatus()
         {
             VjdStat status = this.joystick.GetVJDStatus(this.id);
             return "" + status;
-
         }
 
 
@@ -196,17 +200,50 @@ namespace DemoFeederAlpha
                     iReport = new vJoy.JoystickState();
                     //main parsing and feeding
                     iReport.bDevice = (byte)id;
-                    iReport.AxisX = (int)(conversionFactor * (int)receiveBuffer[3]);
-                    iReport.AxisY = (int)(conversionFactor * (int)receiveBuffer[4]);
-                    iReport.AxisZ = (int)(conversionFactor * (int)receiveBuffer[5]);
-                    iReport.AxisZRot = (int)(conversionFactor * (int)receiveBuffer[6]);
+                    //checking each axis if feedable
+                    if (receiveBuffer[0] % 2 != 0)
+                    {
+                        iReport.AxisX = (int)(conversionFactor * (int)receiveBuffer[3]);
+                    }
+                    else
+                        iReport.AxisX = (int)maxval / 2;
+                    
+                    if ((receiveBuffer[0] >> 1)% 2 != 0)
+                    {
+                        iReport.AxisY = (int)(conversionFactor * (int)receiveBuffer[4]);
+                    }
+                    else
+                        iReport.AxisY = (int)maxval / 2;
+
+                    if ((receiveBuffer[0] >> 2) % 2 != 0)
+                    {
+                        iReport.AxisZ = (int)(conversionFactor * (int)receiveBuffer[5]);
+                    }
+                    else
+                        iReport.AxisZ = (int)maxval / 2;
+
+                    if ((receiveBuffer[0] >> 3) % 2 != 0)
+                    {
+                        iReport.AxisZRot = (int)(conversionFactor * (int)receiveBuffer[6]);
+                    }
+                    else
+                        iReport.AxisZRot = (int)maxval / 2;
+
                     // Set buttons one by one
                     iReport.Buttons = (uint)(receiveBuffer[1] + 256 * (receiveBuffer[2] % 2) + 512 * ((receiveBuffer[2] / 2) % 2));
-                    int pov = (int)receiveBuffer[2] >> 2;
-                    //if (pov == 4)
-                    iReport.bHats = 0xFFFFFFFF;
-                    //else
-                    //  iReport.bHats = (uint)pov;
+                    
+                    if ((receiveBuffer[0] >> 4) % 2 != 0)
+                    {
+                        // setting Dpad values
+                        int pov = (int)receiveBuffer[2] >> 2;
+                        if (pov == 4)
+                            iReport.bHats = 0xFFFFFFFF;
+                        else
+                            iReport.bHats = (uint)pov;
+                    }
+                    else
+                        iReport.bHats = 0xFFFFFFFF; ;
+
                     joystick.UpdateVJD(id, ref iReport);
                 }
 
@@ -262,8 +299,6 @@ namespace DemoFeederAlpha
         {
             _keepRunning = false;
         }
-
-
 
 
     }

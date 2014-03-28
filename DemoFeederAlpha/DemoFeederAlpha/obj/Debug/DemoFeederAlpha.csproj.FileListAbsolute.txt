@@ -1,10 +1,31 @@
-C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe.config
-C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe
-C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.pdb
-C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\vJoyInterfaceWrap.dll
-C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.Form1.resources
-C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.Properties.Resources.resources
-C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.csproj.GenerateResource.Cache
-C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.exe
-C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.pdb
-C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.csprojResolveAssemblyReference.cache
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe.config
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe.manifest
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.application
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.pdb
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\vJoyInterfaceWrap.dll
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.Form1.resources
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.Properties.Resources.resources
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.csproj.GenerateResource.Cache
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.exe.manifest
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.application
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.exe
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.pdb
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe.CodeAnalysisLog.xml
+C:\Users\Alafazam\documents\visual studio 2012\Projects\DemoFeederAlpha\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe.lastcodeanalysissucceeded
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe.config
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.exe
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.pdb
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe.manifest
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.application
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.pdb
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe.CodeAnalysisLog.xml
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\bin\Debug\DemoFeederAlpha.exe.lastcodeanalysissucceeded
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\bin\Debug\vJoyInterfaceWrap.dll
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.csprojResolveAssemblyReference.cache
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.Form1.resources
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.Properties.Resources.resources
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.csproj.GenerateResource.Cache
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.exe.manifest
+C:\Users\Alafazam\Documents\Visual Studio 2012\Projects\DemoFeederAlpha - Copy\DemoFeederAlpha\obj\Debug\DemoFeederAlpha.application

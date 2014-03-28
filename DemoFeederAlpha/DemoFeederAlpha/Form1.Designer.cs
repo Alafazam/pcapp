@@ -34,8 +34,8 @@
             this.tab1 = new System.Windows.Forms.TabPage();
             this.tb1 = new System.Windows.Forms.TextBox();
             this.tab2 = new System.Windows.Forms.TabPage();
-            this.btn2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tab1.SuspendLayout();
             this.tab2.SuspendLayout();
@@ -80,13 +80,14 @@
             // tb1
             // 
             this.tb1.AcceptsReturn = true;
-            this.tb1.Enabled = false;
+            this.tb1.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.tb1.Location = new System.Drawing.Point(330, 6);
             this.tb1.MinimumSize = new System.Drawing.Size(300, 200);
             this.tb1.Multiline = true;
             this.tb1.Name = "tb1";
+            this.tb1.ReadOnly = true;
             this.tb1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tb1.Size = new System.Drawing.Size(300, 200);
+            this.tb1.Size = new System.Drawing.Size(300, 291);
             this.tb1.TabIndex = 2;
             // 
             // tab2
@@ -101,6 +102,17 @@
             this.tab2.TabIndex = 1;
             this.tab2.Text = "About";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DemoFeederAlpha.Properties.Resources.aaaa;
+            this.pictureBox1.Location = new System.Drawing.Point(10, -52);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(620, 389);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // btn2
             // 
             this.btn2.BackColor = System.Drawing.SystemColors.HotTrack;
@@ -113,17 +125,6 @@
             this.btn2.Text = "Stop Feeding";
             this.btn2.UseVisualStyleBackColor = false;
             this.btn2.Click += new System.EventHandler(this.btn2_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DemoFeederAlpha.Properties.Resources.aaaa;
-            this.pictureBox1.Location = new System.Drawing.Point(10, -52);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(620, 389);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Form1
             // 
