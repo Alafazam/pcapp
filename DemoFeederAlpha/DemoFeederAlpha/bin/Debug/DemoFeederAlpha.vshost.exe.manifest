@@ -48,14 +48,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DemoFeederAlpha.exe" size="201216">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DemoFeederAlpha.exe" size="152064">
       <assemblyIdentity name="DemoFeederAlpha" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kUZbwMFx96tG2Dt61LhjRVQlCbbgDkU2TmM11NnTn1A=</dsig:DigestValue>
+        <dsig:DigestValue>clBCvV3JYzlaKCkYM27O/w+/3WoYECp2c1C+Lg/0Yjc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

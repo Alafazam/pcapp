@@ -118,9 +118,12 @@ namespace DemoFeederAlpha
 
         
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+      
+
+        private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("GameLad Pc App 1.0 \nWritten by:Alaf Azam Khan & Ankit Verma\n'Hope you have fun'\nFeedbacks are Welcome", "About");
+
         }
 
        
